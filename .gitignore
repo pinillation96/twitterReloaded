@@ -1,0 +1,43 @@
+# .gitignore
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+*.pyc
+*.so
+*.dylib
+
+# Logs
+logs
+*.log
+
+# Unit test / coverage reports
+htmlcov/
+.coverage
+.tox
+.nox
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Other
+*.bak
+infrastructure/__pycache__/event_logger.cpython-311.pyc
+reports/__pycache__/event_dashboard.cpython-311.pyc
+application/__pycache__/twitter_reloaded.cpython-311.pyc
