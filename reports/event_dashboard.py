@@ -21,3 +21,5 @@ class EventDashboard:
 
     def get_user_activity(self):
         return self.user_event_count
+    def get_open_app_users(self):
+        return len([event for event in self.events if event.action_type == "open application"])

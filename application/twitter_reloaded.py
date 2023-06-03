@@ -16,3 +16,5 @@ class TwitterReloaded:
         # Notify Event Dashboard about this event
         # event_dashboard.update(event)
         return reply, event
+    def login(self, user):
+        self.event_logger.log_open_app(user)
