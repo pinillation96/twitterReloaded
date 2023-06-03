@@ -61,8 +61,12 @@ def main():
             twitter_reloaded.create_tweet(user, content[:300])
         elif choice == "2":
             tweet_id = input("Enter the ID of the tweet you want to reply to: ")
-            content = input("Enter your reply (300 characters max): ")
-            twitter_reloaded.reply_to_tweet(user, tweet_id, content[:300])
+            tweet = twitter_reloaded.get_tweet_by_id(tweet_id)
+            if tweet is not None:
+                content = input("Enter your reply (300 characters max): ")
+                twitter_reloaded.reply_to_tweet(user, tweet, content[:300])
+            else:
+                print("Invalid tweet ID. Please try again.")
         elif choice == "3":
             tweets = twitter_reloaded.get_recent_tweets(10)
             for tweet in tweets:
