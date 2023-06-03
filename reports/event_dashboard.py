@@ -3,13 +3,14 @@ from collections import defaultdict
 from operator import itemgetter
 
 class EventDashboard:
-    def __init__(self):
-        self.events = []
+    def __init__(self, event_logger):
+        self.events = event_logger.events
         self.user_event_count = defaultdict(int)
+        self.update_user_event_count()
 
-    def update(self, event):
-        self.events.append(event)
-        self.user_event_count[event.user.username] += 1
+    def update_user_event_count(self):
+        for event in self.events:
+            self.user_event_count[event.user.username] += 1
 
     def get_most_active_user(self):
         return max(self.user_event_count.items(), key=itemgetter(1))[0]
@@ -21,5 +22,6 @@ class EventDashboard:
 
     def get_user_activity(self):
         return self.user_event_count
+
     def get_open_app_users(self):
         return len([event for event in self.events if event.action_type == "open application"])

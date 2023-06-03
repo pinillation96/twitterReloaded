@@ -60,23 +60,19 @@ def main():
             content = input("Enter your tweet (300 characters max): ")
             twitter_reloaded.create_tweet(user, content[:300])
         elif choice == "2":
-            tweet_id = input("Enter the ID of the tweet you want to reply to: ")
-            tweet = twitter_reloaded.get_tweet_by_id(tweet_id)
-            if tweet is not None:
-                content = input("Enter your reply (300 characters max): ")
-                twitter_reloaded.reply_to_tweet(user, tweet, content[:300])
-            else:
-                print("Invalid tweet ID. Please try again.")
+            tweet_id = int(input("Enter the ID of the tweet you want to reply to: "))
+            content = input("Enter your reply (300 characters max): ")
+            twitter_reloaded.reply_to_tweet(user, tweet_id, content[:300])
         elif choice == "3":
             tweets = twitter_reloaded.get_recent_tweets(10)
             for tweet in tweets:
-                print(f"{tweet.author.name}: {tweet.content}")
+                print(f"{tweet.user.username}: {tweet.content}")
                 for reply in tweet.replies:
-                    print(f"\t{reply.author.name}: {reply.content}")
+                    print(f"\t{reply.user.username}: {reply.content}")
         elif choice == "4":
             dashboard = EventDashboard(twitter_reloaded.event_logger)
-            print("Most active user today:", dashboard.get_most_active_user().name)
-            print("Most commented tweet today:", dashboard.get_most_commented_tweet().content)
+            print("Most active user today:", dashboard.get_most_active_user())
+            print("Most commented tweet today:", dashboard.get_most_commented_tweet())
             print("Number of users who opened the app today:", dashboard.get_open_app_users())
         elif choice == "5":
             print("Thank you for using Twitter Reloaded!")
